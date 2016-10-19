@@ -6,6 +6,7 @@
 #
 On this repository you will find ressources to use as an introduction to linux driver development.
 
+  - Makefile example
   - Basic Hello World! module
   - Module with parameters
   - Module with sysfs entry
