@@ -1,7 +1,7 @@
 # linux-drivers-examples
 
 ##### Note : this repo is the content i am using / creating during my learning experience of linux driver development 
-##### Some portions of code have been take from examples or tutorials , the source will be written.
+##### Some portions of code have been taken from examples or tutorials , the source will be written.
 #
 #
 On this repository you will find ressources to use as an introduction to linux driver development.
