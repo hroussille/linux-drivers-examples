@@ -1,4 +1,4 @@
-# if KERNELRELEASE is not defined, we've been called directly from the     command line.
+# if KERNELRELEASE is not defined, we've been called directly from the command line.
 # Invoke the kernel build system.
 ifeq (${KERNELRELEASE},)
 	KDIR ?= /lib/modules/`uname -r`/build
