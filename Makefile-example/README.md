@@ -20,13 +20,13 @@ Is invoking the kernel build system. The kernel build system knows that we are b
 M=${PWD}
 ```
 
-The kernel build system is going to read out makefile a second time after defining some usefull variables , like 
+The kernel build system is going to read our makefile a second time after defining some usefull variables , like 
 
 ``` 
 ${KERNELRELEASE}
 ```
 
-If this variable is defines the second part is read from the makefile :
+If this variable is defined the second part is read from the makefile :
 
 ``` 
 else
