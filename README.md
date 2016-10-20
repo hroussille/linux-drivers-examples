@@ -25,11 +25,13 @@ You can also find in this repository some drivers specific for the Raspberrypi
 # Coding style
 
 All the modules will be written with the linux kernel coding style.
-A script to check that your file respect the linux kernel coding style is present in the kernel source directory : **/scripts/checkpatch.pl**
+A script to check that your file respect the linux kernel coding style is present in the kernel source directory : 
+**scripts/checkpatch.pl**
 
 Use it with the option **--file** followed by your file(s) name(s) to check for any mistake.
 
-As a reminder the linux kernel coding style is defined in the linux kernel source tree : **/Documentation/CodingStyle**
+As a reminder the linux kernel coding style is defined in the linux kernel source tree : 
+**/Documentation/CodingStyle**
 
 License
 ----
