@@ -1,3 +1,5 @@
+# 01-Hello-World
+
 # MODULE MACROS
 
 - MODULE_LICENSE : describe the license of the module
@@ -36,12 +38,12 @@ Typically calling the **pr_** functions is better.
 
 ```c
 pr_info(fmt, ...);
-pr_emerg(fmt, ...) 
-pr_alert(fmt, ...)
-pr_crit(fmt, ...)
-pr_err(fmt, ...)
-pr_warning(fmt, ...)
-pr_notice(fmt, ...)
+pr_emerg(fmt, ...); 
+pr_alert(fmt, ...);
+pr_crit(fmt, ...);
+pr_err(fmt, ...);
+pr_warning(fmt, ...);
+pr_notice(fmt, ...);
 ```
 
 Later the usage of **dev_dbg** will be covered too.

@@ -1,4 +1,4 @@
-# Makefie-example
+# 00-Makefile
 
 In this makefile you can clearly see 2 parts.
 because our makefile will be read twice. Once when we run make , and a second time by the kernel build system.
