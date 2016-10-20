@@ -1,6 +1,6 @@
 # 01-Hello-World
 
-# MODULE MACROS
+# Module macros
 
 - MODULE_LICENSE : describe the license of the module
 - MODULE_AUTHOR : describe the author of the module
