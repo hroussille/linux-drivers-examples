@@ -5,7 +5,7 @@ because our makefile will be read twice. Once when we run make , and a second ti
 
 The first one  :
 
-```
+```Makefile
 ifeq (${KERNELRELEASE},)
     KDIR ?= /lib/modules/`uname -r`/build
         default:
@@ -16,19 +16,19 @@ ifeq (${KERNELRELEASE},)
 
 Is invoking the kernel build system. The kernel build system knows that we are building an out of tree kernel module thanks to the option :
 
-``` 
+```Makefile
 M=${PWD}
 ```
 
 The kernel build system is going to read our makefile a second time after defining some usefull variables , like 
 
-``` 
+```Makefile
 ${KERNELRELEASE}
 ```
 
 If this variable is defined the second part is read from the makefile :
 
-``` 
+```Makefile
 else
 	obj-m := main.o
 	main-objs := file1.o file2.o
