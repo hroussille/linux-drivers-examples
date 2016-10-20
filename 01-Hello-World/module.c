@@ -4,11 +4,12 @@
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Hector Roussille <hector.roussille@gmail.com");
-MODULE_DESCRIPTION("Hello Wordl!");
+MODULE_DESCRIPTION("Basic Hello Wordl! module");
 
 /* Initialisation fonction */
 static int dummy_init(void)
 {
+	/* Always use the pr_ functions instead of printK */
 	pr_info("Hello World!\n");
 	return 0;
 }
