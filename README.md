@@ -12,12 +12,12 @@ On this repository you will find ressources to use as an introduction to linux d
   - Ioctl usage
   - etc...
 
-You can also find in this repository some drivers specific for the Raspberrypi
+You can also find in this repository some drivers specific for the Raspberry Pi
 
   - Basic Led driver
   - etc...
 
-# hardware required for the raspberrypi specific drivers
+# hardware required for the Raspberry Pi specific drivers
   - Raspberry pi (bcm 2835 or bcm2836 based board)
   - Leds & resistance
   - JY-MCU serial bluetooth module.
