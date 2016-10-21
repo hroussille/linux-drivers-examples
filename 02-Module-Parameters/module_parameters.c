@@ -13,7 +13,7 @@ MODULE_DESCRIPTION("Basic module with parameters");
 
 static int param_int = 10;
 
-/* 
+/*
  * Declare the previous variable as an interger parameter then
  * place a description for this parameter
  */
