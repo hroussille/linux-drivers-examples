@@ -16,7 +16,7 @@ MODULE_PARM_DESC(variable_name, description);
 ex : for an int * array :
 
 ```c
-static int * array;
+static int *array = { 0, 0 };
 static int elements_in_array;
 
 module_param_array(array, int, &elements_in_array, 0000);
