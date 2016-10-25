@@ -6,7 +6,7 @@ This is why , before even creating a device file , you must provide some functio
 - Open
 - Read
 - Write
-- Relase (Close)
+- Release (Close)
 
 Thoose are the mandatory ones for a char device.
 
