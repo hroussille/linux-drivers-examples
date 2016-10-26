@@ -4,6 +4,7 @@
 #include <linux/kernel.h>
 #include <linux/fs.h>
 #include <linux/uaccess.h>
+#include <linux/semaphore.h>
 
 #define  DEVICE_NAME "example_device"
 #define  CLASS_NAME  "example_class"
@@ -15,6 +16,17 @@ MODULE_DESCRIPTION("Example of char device driver");
 static int    majorNumber;
 static struct class *example_Class;
 static struct device *example_Device;
+
+/*
+ * Adding the semaphore for locking mechanism
+ */
+static struct semaphore lock;
+
+/* Define the size of our internal buffer */
+#define BUFFER_SIZE 512
+
+/* Declare the internal buffer */
+static char content[BUFFER_SIZE];
 
 static int     example_open(struct inode *, struct file *);
 static int     example_release(struct inode *, struct file *);
@@ -31,6 +43,14 @@ static const struct file_operations fops = {
 static int example_init(void)
 {
 	pr_info("Example driver init");
+
+	/*
+	 * Initialise the semaphore
+	 * Here use a count of 1 so only one owner is allowed
+	 */
+
+	sema_init(&lock, 1);
+
 	majorNumber = register_chrdev(0, DEVICE_NAME, &fops);
 
 	if (majorNumber < 0)
@@ -72,21 +92,68 @@ static int example_open(struct inode *inodep, struct file *filep)
 static ssize_t example_read(struct file *filep, char *buffer, size_t len,
 			loff_t *offset)
 {
-	pr_info("Example driver read");
-	return 0;
+	int error;
+
+	/* If the offset is out of range return 0 */
+	if (*offset >= BUFFER_SIZE)
+		return 0;
+
+	/* If there is less than len bytes to read , truncate len */
+	if (*offset + len >= BUFFER_SIZE)
+		len = BUFFER_SIZE - *offset;
+
+	/* Acquire the lock */
+	down(&lock);
+
+	/* Perform the actual read */
+	error = copy_to_user(buffer, content, len);
+
+	/* Release the lock */
+	up(&lock);
+
+	/* Update the offset */
+	*offset += len - error;
+
+	/* If any error occured notify the user */
+	if (error != 0)
+		return -ENOMEM;
+
+	/* Else return the number of bytes read */
+	return len - error;
 }
 
 static ssize_t example_write(struct file *filep, const char *buffer, size_t len,
 			 loff_t *offset)
 {
-	pr_info("Example driver write");
+	int error;
 
-	/*
-	 * Return -EPERM and not 0 to signal the writer that the function is
-	 * not allowed to be used.
-	 */
+	/* If the offset is out of range return 0 */
+	if (*offset >= BUFFER_SIZE)
+		return 0;
 
-	return -EPERM;
+	/* If there is less than len bytes free , truncate len */
+	if (*offset + len >= BUFFER_SIZE)
+		len = BUFFER_SIZE - *offset;
+
+	/* Acquire the lock */
+	down(&lock);
+
+	/* Perform the actual write */
+	error = copy_from_user(content, buffer, len);
+
+	/* Release the lock */
+	up(&lock);
+
+	/* Update the offset */
+	*offset += len - error;
+
+	/* If any error occured notify the user */
+	if (error != 0)
+		return -ENOMEM;
+
+	/* Else return the number of bytes written */
+	return len - error;
+
 }
 
 static int example_release(struct inode *inodep, struct file *filep)
