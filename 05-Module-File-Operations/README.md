@@ -94,7 +94,7 @@ This functions takes 4 parameters.
 - pointer to user buffer
 - size to read
 - offset
-- 
+ 
 ### How to transfer data from user space to kernel space ?
 
 For the same reasons as above , you must use a special function for this kind of transfert.
